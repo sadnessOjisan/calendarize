@@ -1,1 +1,1 @@
-pub mod calendrize;
+pub mod calendarize;

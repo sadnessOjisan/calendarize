@@ -1,6 +1,21 @@
 use chrono::*;
 
-pub fn calendrize(date: NaiveDate) -> Vec<[u32; 7]> {
+/// generate calendar.
+/// # Examples
+/// ```
+/// let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
+/// let actual = calendarize(date);
+///  assert_eq!(
+/// vec![
+/// [0, 0, 0, 0, 0, 1, 2],
+/// [3, 4, 5, 6, 7, 8, 9],
+/// [10, 11, 12, 13, 14, 15, 16],
+/// [17, 18, 19, 20, 21, 22, 23],
+/// [24, 25, 26, 27, 28, 29, 30],
+/// [31, 0, 0, 0, 0, 0, 0]
+/// ], actual);
+/// ```
+pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
     let mut out: Vec<[u32; 7]> = Vec::with_capacity(7);
     let year = date.year();
     let month = date.month();
@@ -46,7 +61,7 @@ mod tests {
     #[test]
     fn january() {
         let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
-        let actual = calendrize(date);
+        let actual = calendarize(date);
         assert_eq!(
             vec![
                 [0, 0, 0, 0, 0, 1, 2],
@@ -63,7 +78,7 @@ mod tests {
     #[test]
     fn april() {
         let date = NaiveDate::parse_from_str("2021-04-02", "%Y-%m-%d").unwrap();
-        let actual = calendrize(date);
+        let actual = calendarize(date);
         assert_eq!(
             vec![
                 [0, 0, 0, 0, 1, 2, 3],
@@ -79,7 +94,7 @@ mod tests {
     #[test]
     fn uruudoshi() {
         let date = NaiveDate::parse_from_str("2020-02-02", "%Y-%m-%d").unwrap();
-        let actual = calendrize(date);
+        let actual = calendarize(date);
         assert_eq!(
             vec![
                 [0, 0, 0, 0, 0, 0, 1],
@@ -95,7 +110,7 @@ mod tests {
     #[test]
     fn uruwanaidoshi() {
         let date = NaiveDate::parse_from_str("2021-02-02", "%Y-%m-%d").unwrap();
-        let actual = calendrize(date);
+        let actual = calendarize(date);
         assert_eq!(
             vec![
                 [0, 1, 2, 3, 4, 5, 6],
