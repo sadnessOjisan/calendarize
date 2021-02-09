@@ -1,6 +1,6 @@
 [package]
 name = "calendarize"
-version = "0.1.0"
+version = "0.0.1"
 authors = ["sadness_ojisan <sadness.ojisan@gmail.com>"]
 edition = "2018"
 
