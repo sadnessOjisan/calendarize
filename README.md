@@ -18,7 +18,25 @@ calendarize(date);
 
 ## development
 
+### setup
+
+```sh
+cargo install
+```
+
+### exec
+
 ```sh
 # exec
 cargo test
 ```
+
+### publish
+
+Before publish, get a crates.io token.
+
+```sh
+cargo publish
+```
+
+or tag to commit.
