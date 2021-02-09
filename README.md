@@ -1,6 +1,9 @@
 # calendarize
 
-Just calendarize. This is imspired by Node.js [calendarize](https://github.com/lukeed/calendarize).
+[![calendarize at crates.io](https://img.shields.io/crates/v/calendarize.svg)](https://crates.io/crates/calendarize)
+[![calendarize at docs.rs](https://docs.rs/calendarize/badge.svg)](https://docs.rs/calendarize)
+
+Just calendarize. This is imspired from Node.js [calendarize](https://github.com/lukeed/calendarize).
 
 ## how to use
 

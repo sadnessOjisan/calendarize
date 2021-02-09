@@ -2,7 +2,8 @@ use chrono::*;
 
 /// generate calendar.
 pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
-    let mut out: Vec<[u32; 7]> = Vec::with_capacity(7);
+    // Q: NaiveDate を引数にとる I/F ってOK?
+    let mut monthly_calendar: Vec<[u32; 7]> = Vec::with_capacity(7);
     let year = date.year();
     let month = date.month();
     let mut first_date_day = NaiveDate::from_ymd(year, month, 1)
@@ -13,33 +14,32 @@ pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
         .pred()
         .day();
     let mut date: u32 = 0;
-    let mut week: [u32; 7] = [0; 7];
     loop {
-        let mut day = 0 as usize;
-        week = [0; 7];
+        let mut week: [u32; 7] = [0; 7];
+        let mut day = 0;
         loop {
-            if day < first_date_day as usize {
+            if day < first_date_day {
                 // no op
             } else if day == 7 {
                 first_date_day = 0;
                 break;
             } else {
-                date = date + 1;
-                week[day] = date;
+                date += 1;
+                week[day as usize] = date;
                 first_date_day = 0;
                 if date >= end_date {
                     break;
                 }
             };
-            day = day + 1;
+            day += 1;
         }
 
-        out.push(week);
+        monthly_calendar.push(week);
         if date >= end_date {
             break;
         }
     }
-    return out;
+    return monthly_calendar;
 }
 
 #[test]
