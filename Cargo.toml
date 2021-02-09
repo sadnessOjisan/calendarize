@@ -3,7 +3,8 @@ name = "calendarize"
 version = "0.0.1"
 authors = ["sadness_ojisan <sadness.ojisan@gmail.com>"]
 edition = "2018"
-
+description = "calendarize month"
+license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
