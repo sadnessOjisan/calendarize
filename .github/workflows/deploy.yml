@@ -14,8 +14,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: icepuma/rust-action@master
       - name: Build
         run: cargo build
       - name: Run tests
         run: cargo test
+      - name: publish
+        run: cargo publish
