@@ -1,0 +1,23 @@
+name: Rust
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: icepuma/rust-action@master
+      - run: cargo login ${CRATES_IO_TOKEN}
+        env:
+          CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+      - name: Build
+        run: cargo build
+      - name: Run tests
+        run: cargo test
+      - name: publish
+        run: cargo publish

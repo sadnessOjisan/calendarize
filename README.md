@@ -1,14 +1,12 @@
-# calendrize
+# calendarize
 
-calendrize lib
-
-FYI: https://github.com/lukeed/calendarize
+Just calendarize. This is imspired by Node.js [calendarize](https://github.com/lukeed/calendarize).
 
 ## how to use
 
 ```rs
 let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
-calendrize(date);
+calendarize(date);
 
 // [0, 0, 0, 0, 0, 1, 2],
 // [3, 4, 5, 6, 7, 8, 9],
