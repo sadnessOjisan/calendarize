@@ -16,7 +16,7 @@ jobs:
         env:
           CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
       - name: Build
-        run: cargo build
+        run: cargo build --release
       - name: Run tests
         run: cargo test
       - name: publish
