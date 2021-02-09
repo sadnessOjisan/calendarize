@@ -1,8 +1,6 @@
 # calendarize
 
-calendarize lib
-
-FYI: https://github.com/lukeed/calendarize
+Just calendarize. This is imspired by Node.js [calendarize](https://github.com/lukeed/calendarize).
 
 ## how to use
 
