@@ -1,45 +1,49 @@
 use chrono::*;
 
-/// generate calendar.
+/// Generate a calendar view of the given date's month.
+///
+/// Each vector element is an array of seven numbers representing weeks (starting on Sundays),
+/// and each value is the numeric date.
+/// A value of zero means a date that not exists in the current month.
+///
+/// # Examples
+/// ```
+/// use chrono::*;
+/// use calendarize::calendarize;
+///
+/// let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
+/// println!("{:?}", calendarize(date));
+/// ```
 pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
     // Q: NaiveDate を引数にとる I/F ってOK?
-    let mut monthly_calendar: Vec<[u32; 7]> = Vec::with_capacity(7);
+    let mut monthly_calendar: Vec<[u32; 7]> = Vec::with_capacity(6);
     let year = date.year();
     let month = date.month();
     let mut first_date_day = NaiveDate::from_ymd(year, month, 1)
         .weekday()
         .num_days_from_sunday();
     let end_date = NaiveDate::from_ymd_opt(year, month + 1, 1)
-        .unwrap_or(NaiveDate::from_ymd(year + 1, 1, 1))
+        .unwrap_or_else(|| NaiveDate::from_ymd(year + 1, 1, 1))
         .pred()
         .day();
+
     let mut date: u32 = 0;
-    loop {
+    while date < end_date {
         let mut week: [u32; 7] = [0; 7];
-        let mut day = 0;
-        loop {
-            if day < first_date_day {
-                // no op
-            } else if day == 7 {
-                first_date_day = 0;
+        for day in first_date_day..7 {
+            date += 1;
+            week[day as usize] = date;
+
+            if date >= end_date {
                 break;
-            } else {
-                date += 1;
-                week[day as usize] = date;
-                first_date_day = 0;
-                if date >= end_date {
-                    break;
-                }
-            };
-            day += 1;
+            }
         }
+        first_date_day = 0;
 
         monthly_calendar.push(week);
-        if date >= end_date {
-            break;
-        }
     }
-    return monthly_calendar;
+
+    monthly_calendar
 }
 
 #[test]
