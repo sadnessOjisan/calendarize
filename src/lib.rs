@@ -14,6 +14,12 @@ use chrono::*;
 /// let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
 /// // Week = [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
 /// println!("{:?}", calendarize(date));
+/// // [0, 0, 0, 0, 0, 1, 2],
+/// // [3, 4, 5, 6, 7, 8, 9],
+/// // [10, 11, 12, 13, 14, 15, 16],
+/// // [17, 18, 19, 20, 21, 22, 23],
+/// // [24, 25, 26, 27, 28, 29, 30],
+/// // [31, 0, 0, 0, 0, 0, 0]
 /// ```
 pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
     calendarize_with_offset(date, 0)
@@ -36,6 +42,11 @@ pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
 /// let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
 /// // Week = [Mon, Tue, Wed, Thu, Fri, Sat, Sun]
 /// println!("{:?}", calendarize(date, 1));
+/// // [0, 0, 0, 0, 1, 2, 3],
+/// // [4, 5, 6, 7, 8, 9, 10],
+/// // [11, 12, 13, 14, 15, 16, 17],
+/// // [18, 19, 20, 21, 22, 23, 24],
+/// // [25, 26, 27, 28, 29, 30, 0],
 /// ```
 pub fn calendarize_with_offset(date: NaiveDate, offset: u32) -> Vec<[u32; 7]> {
     let mut monthly_calendar: Vec<[u32; 7]> = Vec::with_capacity(6);
@@ -136,7 +147,7 @@ fn with_offset_from_saturday() {
             [9, 10, 11, 12, 13, 14, 15],
             [16, 17, 18, 19, 20, 21, 22],
             [23, 24, 25, 26, 27, 28, 29],
-            [30, 0 ,0,0,0,0,0]
+            [30, 0, 0, 0, 0, 0, 0]
         ],
         actual
     );
