@@ -12,12 +12,31 @@ use chrono::*;
 /// use calendarize::calendarize;
 ///
 /// let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
+/// // Week = [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
 /// println!("{:?}", calendarize(date));
 /// ```
 pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
     calendarize_with_offset(date, 0)
 }
 
+/// Generate a calendar view of the given date's month and offset.
+///
+/// Each vector element is an array of seven numbers representing weeks (starting on Sundays),
+/// and each value is the numeric date.
+/// A value of zero means a date that not exists in the current month.
+///
+/// Offset means the number of days from sunday.
+/// For example, 1 means monday, 6 means saturday.
+///
+/// # Examples
+/// ```
+/// use chrono::*;
+/// use calendarize::calendarize;
+///
+/// let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
+/// // Week = [Mon, Tue, Wed, Thu, Fri, Sat, Sun]
+/// println!("{:?}", calendarize(date, 1));
+/// ```
 pub fn calendarize_with_offset(date: NaiveDate, offset: u32) -> Vec<[u32; 7]> {
     let mut monthly_calendar: Vec<[u32; 7]> = Vec::with_capacity(6);
     let year = date.year();
