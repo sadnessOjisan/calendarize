@@ -37,11 +37,11 @@ pub fn calendarize(date: NaiveDate) -> Vec<[u32; 7]> {
 /// # Examples
 /// ```
 /// use chrono::*;
-/// use calendarize::calendarize;
+/// use calendarize::calendarize_with_offset;
 ///
 /// let date = NaiveDate::parse_from_str("2021-01-02", "%Y-%m-%d").unwrap();
 /// // Week = [Mon, Tue, Wed, Thu, Fri, Sat, Sun]
-/// println!("{:?}", calendarize(date, 1));
+/// println!("{:?}", calendarize_with_offset(date, 1));
 /// // [0, 0, 0, 0, 1, 2, 3],
 /// // [4, 5, 6, 7, 8, 9, 10],
 /// // [11, 12, 13, 14, 15, 16, 17],
